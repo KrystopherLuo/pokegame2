@@ -1,0 +1,19 @@
+{
+      "id": 3,
+      "num": "003",
+      "name": "Venusaur",
+      "type": ["Grass", "Poison"],
+      "height": "2.01 m",
+      "weight": "100.0 kg",
+      "weaknesses": ["Fire", "Ice", "Flying", "Psychic"],
+      "prev_evolution": [
+        {
+          "num": "001",
+          "name": "Bulbasaur"
+        },
+        {
+          "num": "002",
+          "name": "Ivysaur"
+        }
+      ]
+}

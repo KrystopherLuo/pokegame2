@@ -1,0 +1,30 @@
+{
+    "id": "001",
+    "name": "Bulbasaur",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "genera": "Seed Pokémon",
+    "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png",
+    "description": "Bulbasaur can be seen napping in bright sunlight.\nThere is a seed on its back. By soaking up the sun’s rays,\nthe seed grows progressively larger.",
+    "height": 7,
+    "weight": 69,
+    "eggGroups": [
+      "Plant",
+      "Monster"
+    ],
+    "genderRate": {
+      "male": 87.5,
+      "female": 12.5,
+      "genderless": false
+    },
+    "stats": {
+      "speed": 45,
+      "specialDefense": 65,
+      "specialAttack": 65,
+      "defense": 49,
+      "attack": 49,
+      "hp": 45
+    }
+}
