@@ -1,16 +1,15 @@
-import glob
-
 from battle import battle
 from pokemoncentral import create_random_pk, create_pk #esses vão permancer, deixei até separado.
 
 #from trainer import Trainer
-from trainer import Player, Trainer
+from trainer import Player
 #from pokemon import Pokemon #isso era pra sumir ao longo que as classes vão ficando independentes tipo o player convoca os pokemon
 
-import random
-import csv
-
 #talevz pra programar os moves e habilidades eu tenha que colocar pra cada um um parâmetro "posmove" "posstart" "posdead" que todos tenham mas nem todos usem
+shop = {
+    "pokeball" : 200
+}
+
 class Game:
     def __init__(self):
         self.gamerules = {
@@ -23,12 +22,12 @@ class Game:
     def start(self): # o jogo tem que rodar aqui.
 
         player = Player("ash") #o jogo é pra ser singleplayer, sei nem porque adicionei coisa de duelo, mas vai servir pra fazer os npc de qualquer forma.
+        player.start_adventure()
+        #venusaur = create_pk(1, 80, [31, 31, 31, 31, 31, 31], [0, 0, 0, 0, 0, 0], "hardy")
+        #charizard = create_pk(3, 80, [31, 31, 31, 31, 31, 31], [0, 0, 0, 0, 0, 0], "hardy")
 
-        venusaur = create_pk(1, 80, [31, 31, 31, 31, 31, 31], [0, 0, 0, 0, 0, 0], "hardy")
-        charizard = create_pk(3, 80, [31, 31, 31, 31, 31, 31], [0, 0, 0, 0, 0, 0], "hardy")
-
-        player.receive_pokemon(charizard)
-        player.receive_pokemon(venusaur) 
+        #player.receive_pokemon(charizard)
+        #player.receive_pokemon(venusaur) 
 
         #npc = Trainer("gary", self.battlecentral, self.pokemoncentral) #era pra ter um playermanager pra cuidar disso.
         #npc.receive_pokemon(3, 80, [31, 31, 31, 31, 31, 31], [0, 0, 0, 0, 0, 0], "hardy")

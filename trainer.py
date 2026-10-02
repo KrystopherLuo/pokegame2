@@ -1,3 +1,5 @@
+from xmlrpc.client import INVALID_ENCODING_CHAR
+
 from moves import moves
 from pokemon import Pokemon #precisa importar o pokemon pra comparar se um item recebido é um pokemon realmente.
 from pokemoncentral import create_pk, random_iv, random_ev, random_nature
@@ -102,6 +104,9 @@ class Player(Trainer):
         super().__init__(nick)
 
         self.money = 1000
+        self.inventory = {
+            "pokeball" : 0
+        }
         self.triggers =  {
 
         }
@@ -165,6 +170,38 @@ class Player(Trainer):
 
     def battle_swap_pokemon(self):
         self.swap_pokemon(1, self.choice_alive_pokemon())
+
+    def get_valid_input(self, valid):
+        assert isinstance(valid, list)
+        while True:
+            print(f"comandos válidos: {valid}")
+            command = input()
+            if command in valid:
+                return command
+
+    def receive_item(self, item, quantity):
+        assert isinstance(item, str)
+        try:
+            self.inventory[item] += quantity
+        except IndexError:
+            self.inventory[item] = quantity
+
+    def remove_item(self, item, quantity):
+        assert isinstance(item, str)
+        try:
+            if self.inventory[item] >= quantity:
+                self.inventory[item] -= quantity
+                return
+        except IndexError:
+            pass
+        print(f"erro, player não possui {item} o suficiente para ser removido.")
+
+
+
+    def start_adventure(self):
+        starter = self.get_valid_input(["bulbasaur", "squirtle", "charmander"])
+        self.receive_pokemon(create_pk(starter, 5))
+
 
 def create_trainer(nick, team):
     assert isinstance(team, list)
