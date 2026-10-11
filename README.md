@@ -5,11 +5,14 @@ Um fan game em texto de outro fan game muito antigo de pokémon para windows cha
 
 Neste jogo, você começa escolhendo um starter da primeira geração e precisa treinar ele por meio de batalhas contra treinadores e batalhas selvagens para se fortalecer, capturar novos pokémons e derrotar chefes e líderes de ginásio até conseguir se tornar forte o suficiente para derrotar o chefe final da equipe Rocket, Giovanni.
 
+![](./images/demonstracao.png)
+
 dependências: python 3.13.7 que pode ser baixado do site python.org
 
 como executar o programa: Clique duas vezes no programa "pokegame2.py" e use o terminal para interagir.
 
 Estrutura do projeto:
+
 battle.py: Cuida de tudo referente a batalhas
 moves.py: Guarda uma lista com todos os movimentos e posteriormente deve guardar também as funcionalidades especiais destes movimentos.
 poke_types.py: Guarda as relações de tipos.
@@ -19,6 +22,30 @@ pokemon.py: Cuida de coisas relacionadas a classe pokemon
 pokemoncentral.py Cuida de funções necessárias para integir com pokémon e gerar novos pokémon.
 trainer.py: Cuida da classe Trainer e da classe Player e também cuida dos NPC rivais ou líderes de ginásio.
 gen01.csv: Guarda a pokedéx do jogo.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 LICENSE: licença GNU 
 
