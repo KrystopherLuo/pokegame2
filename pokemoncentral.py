@@ -169,6 +169,9 @@ def create_wild_pk(): #agora isso é obsoleto porque o createpk faz essa aleator
     random_pk.update_stats()
     return random_pk
 
+def create_random_pk():
+    pass
+
 
 
 

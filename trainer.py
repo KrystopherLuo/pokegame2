@@ -1,5 +1,3 @@
-from xmlrpc.client import INVALID_ENCODING_CHAR
-
 from moves import moves
 from pokemon import Pokemon #precisa importar o pokemon pra comparar se um item recebido é um pokemon realmente.
 from pokemoncentral import create_pk, random_iv, random_ev, random_nature
@@ -108,8 +106,17 @@ class Player(Trainer):
             "pokeball" : 0
         }
         self.triggers =  {
+            'trainers' : {
 
+            }
         }
+
+    def receive_medal(self, trainer_nick):
+        
+        if self.triggers["trainers"][trainer_nick]:
+            self.triggers["trainers"][trainer_nick] +=1 
+        else:
+            self.triggers["trainers"][trainer_nick] = 1
 
     def choice_turn_action(self):
         while True:
@@ -171,13 +178,18 @@ class Player(Trainer):
     def battle_swap_pokemon(self):
         self.swap_pokemon(1, self.choice_alive_pokemon())
 
-    def get_valid_input(self, valid):
+    def get_valid_input(self, valid, message="comandos válidos: "):
         assert isinstance(valid, list)
         while True:
-            print(f"comandos válidos: {valid}")
+            print(f"{message}{valid}")
             command = input()
             if command in valid:
                 return command
+            assert True, "algo de errado em get_valid_input"
+
+    def heal(self):
+        for pokemon in self.team:
+            pokemon.update_stats()
 
     def receive_item(self, item, quantity):
         assert isinstance(item, str)
@@ -213,6 +225,8 @@ def create_trainer(nick, team):
         assert isinstance(pokemon, Pokemon)
         trainer.receive_pokemon(pokemon)
 
+    return trainer
+
 generics_ivs = {
     "easy" : [0, 0, 0, 0, 0, 0],
     "medium" : [20, 20, 20, 20, 20, 20],
@@ -228,29 +242,28 @@ generics_evs = {
     "hard" : get_best_evs("s")
 }
 
-trainers_teams = {
-    "starters" : {
-        "red" : [create_pk("charmander")],
-        "green" : [create_pk("bulbasaur")], #eu terminei de escrever só pra perceber que preciso reescever fundindo create_random_pk com create_pk utilizando parâmetros opcionais e os que você não especificar, o script faz aleatório. Vai ficar bem mais bonito, depois eu faço.
-        "blue" : [create_pk("squirtle")],
-    },
-    "kanto" : {
-        "kanto gym leaders" : {
-            "Brock" : [create_pk("geodude", 10), create_pk("onix", 11)],
-            "Misty" : [create_pk("starmie", 15), create_pk("staryu", 14)],
-            "Lt.Surge" : [create_pk("pikachu", 20), create_pk("jolteon", 21), create_pk("raichu", 22)],
-            "Erika" : [create_pk("victreebel", 23), create_pk("parasect", 23), create_pk("vileplume", 24), create_pk("tangela", 25)],
-            "Koga" : [create_pk("beedrill", 23), create_pk("arbok", 23), create_pk("venomoth", 24), create_pk("tentacruel", 25), create_pk("golbat", 25)],
-            "Sabrina" : [create_pk("alakazam", 23), create_pk("slowbro", 23), create_pk("hypno", 24), create_pk("exeggutor", 25), create_pk("mr. mime", 25), create_pk("jynx", 25)],
-            "Blaine" : [create_pk("flareon", 23), create_pk("ninetales", 23), create_pk("arcanine", 24), create_pk("rapidash", 25), create_pk("magmar", 25), create_pk("charizard", 25)],
-            "Giovanni" : [create_pk("sandslash", 23), create_pk("nidoqueen", 23), create_pk("nidoking", 24), create_pk("golem", 25), create_pk("rhydon", 25), create_pk("marowak", 25)],
-        },
-        "kanto elite 4" : {
-            "Bruno" : [create_pk("primeape", 10), create_pk("poliwrath", 10), create_pk("machamp", 10), create_pk("hitmonlee", 10), create_pk("hitmonchan", 10), create_pk("onix", 10), ],
-            "Lorelei" : [create_pk("dewgong", 10), create_pk("lapras", 10), create_pk("jynx", 10), create_pk("cloyster", 10), create_pk("blastoise", 10), create_pk("articuno", 10), ],
-            "Agatha" : [create_pk("haunter", 10), create_pk("haunter", 10), create_pk("pinsir", 10), create_pk("weezing", 10), create_pk("gengar", 10), create_pk("gengar", 10), ],
-            "Lance" : [create_pk("dragonair", 10), create_pk("gyarados", 10), create_pk("dragonair", 10), create_pk("dragonite", 10), create_pk("aerodactyl", 10), create_pk("dragonite", 10), ],
-        },
-        "kanto champion" : [create_pk("dragonair", 10), create_pk("gyarados", 10), create_pk("mew", 10), create_pk("venusaur", 10), create_pk("blastoise", 10), create_pk("charizard", 10), ],
-    },
+trainers = {
+
+    "red" : create_trainer("red", [create_pk("charmander")]),
+    "green" : create_trainer("green", [create_pk("bulbasaur")]), #eu terminei de escrever só pra perceber que preciso reescever fundindo create_random_pk com create_pk utilizando parâmetros opcionais e os que você não especificar, o script faz aleatório. Vai ficar bem mais bonito, depois eu faço.
+    "blue" : create_trainer("blue", [create_pk("squirtle")]),
+
+    "brock" : create_trainer("brock", [create_pk("geodude", 10), create_pk("onix", 11)]),
+    "misty" : create_trainer("misty", [create_pk("starmie", 15), create_pk("staryu", 14)]),
+    "lt.Surge" : create_trainer("lt.surge", [create_pk("pikachu", 20), create_pk("jolteon", 21), create_pk("raichu", 22)]),
+    "erika" : create_trainer("erika", [create_pk("victreebel", 23), create_pk("parasect", 23), create_pk("vileplume", 24), create_pk("tangela", 25)]),
+    "koga" : create_trainer("koga", [create_pk("beedrill", 23), create_pk("arbok", 23), create_pk("venomoth", 24), create_pk("tentacruel", 25), create_pk("golbat", 25)]),
+    "sabrina" : create_trainer("sabrina", [create_pk("alakazam", 23), create_pk("slowbro", 23), create_pk("hypno", 24), create_pk("exeggutor", 25), create_pk("mr. mime", 25), create_pk("jynx", 25)]),
+    "blaine" : create_trainer("blaine", [create_pk("flareon", 23), create_pk("ninetales", 23), create_pk("arcanine", 24), create_pk("rapidash", 25), create_pk("magmar", 25), create_pk("charizard", 25)]),
+    "giovanni" : create_trainer("giovani", [create_pk("sandslash", 23), create_pk("nidoqueen", 23), create_pk("nidoking", 24), create_pk("golem", 25), create_pk("rhydon", 25), create_pk("marowak", 25)]),
+
+    "bruno" : create_trainer("bruno", [create_pk("primeape", 10), create_pk("poliwrath", 10), create_pk("machamp", 10), create_pk("hitmonlee", 10), create_pk("hitmonchan", 10), create_pk("onix", 10), ]),
+    "lorelei" : create_trainer("lorelei",[create_pk("dewgong", 10), create_pk("lapras", 10), create_pk("jynx", 10), create_pk("cloyster", 10), create_pk("blastoise", 10), create_pk("articuno", 10), ]),
+    "agatha" : create_trainer("agatha", [create_pk("haunter", 10), create_pk("haunter", 10), create_pk("pinsir", 10), create_pk("weezing", 10), create_pk("gengar", 10), create_pk("gengar", 10), ]),
+    "lance" : create_trainer("lance", [create_pk("dragonair", 10), create_pk("gyarados", 10), create_pk("dragonair", 10), create_pk("dragonite", 10), create_pk("aerodactyl", 10), create_pk("dragonite", 10), ]),
+
 }
+
+trainers_nick = []
+for nick, trainer in trainers.items():
+    trainers_nick.append(nick)
