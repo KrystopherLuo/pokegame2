@@ -45,7 +45,7 @@ def battle( fighter1, fighter2): #preciso terminar esse reformulation battle
             "capture" : 6,
             "switch" : 6
         }
-        return actions_priority[turn_action[0]]
+        return actions_priority[turn_action["action"]]
 
     def on_turn_end(chekingtrainer): #o death protocol recebe player. funciona pra verificar se o pokemon em batalha morreu e, se sim, requisitar uma troca e encerrar a batalha se estiver todo mundo morto.
         chekingpk = chekingtrainer.get_first_pk()
@@ -154,6 +154,9 @@ def battle( fighter1, fighter2): #preciso terminar esse reformulation battle
                 on_turn_end(fighter_rival) #if o cara morreu, break. falta isso pra não o cara que morreu aproveitar o turno.
 
                 rank_speed = (rank_speed[1], rank_speed[0])
+
+        if fighter2.get_first_pk().stats["hp"] == 0:
+            fighter1.get_first_pk().exp += fighter2.get_first_pk().exp_yield
 
         print(f"turno acabado")
 

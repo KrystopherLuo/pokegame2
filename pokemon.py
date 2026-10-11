@@ -15,6 +15,8 @@ class Pokemon: #alive
         self.catch_rate = 0.5
 
         self.level = level
+        self.exp = level*100
+        self.exp_yield = 100
 
         self.nature = nature
         self.teamindex = 0
@@ -88,7 +90,13 @@ class Pokemon: #alive
         stat = (((2 * int(pokedex.import_race(self.raceid)[stat]) + self.iv[stat] + int((self.ev[stat]/4))) * self.level / 100) + 5)
         return stat
 
+    def calculate_level(self):
+        level = int(self.exp/100)
+        return level
+
     def update_stats(self): #isso não deveria estar na dex? Depois eu vejo.
+
+        self.level = self.calculate_level()
 
         naturesinfo = {
             "hardy": {

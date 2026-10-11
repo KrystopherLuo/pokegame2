@@ -17,7 +17,7 @@ battle.py: Cuida de tudo referente a batalhas
 moves.py: Guarda uma lista com todos os movimentos e posteriormente deve guardar também as funcionalidades especiais destes movimentos.
 poke_types.py: Guarda as relações de tipos.
 pokedex.py: carrega informações referentes a pokedex e métodos para a utilizar
-pokegame.py: É responsável por executar o jogo e cuidar de algumas ações do jogador.
+pokegame2.py: É responsável por executar o jogo e cuidar de algumas ações do jogador.
 pokemon.py: Cuida de coisas relacionadas a classe pokemon
 pokemoncentral.py Cuida de funções necessárias para integir com pokémon e gerar novos pokémon.
 trainer.py: Cuida da classe Trainer e da classe Player e também cuida dos NPC rivais ou líderes de ginásio.
@@ -47,7 +47,7 @@ gen01.csv: Guarda a pokedéx do jogo.
 
 
 
-LICENSE: licença GNU 
+Este projeto está sob a licença [GNU GPL v3](./LICENSE)
 
                     GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007

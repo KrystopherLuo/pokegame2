@@ -41,7 +41,7 @@ class Game:
         #npc.receive_pokemon(3, 80, [31, 31, 31, 31, 31, 31], [0, 0, 0, 0, 0, 0], "hardy")
         #npc.receive_pokemon(6, 80, [31, 31, 31, 31, 31, 31], [0, 0, 0, 0, 0, 0], "hardy")  
 
-        commands = ["wild_battle", "trainer_battle"]
+        commands = ["wild_battle", "trainer_battle", "quit"]
         commands_functions = {
             "wild_battle" : self.wild_battle,
             "trainer_battle" : self.trainer_battle
@@ -55,10 +55,11 @@ class Game:
 
             command = self.player.get_valid_input(commands)
 
-            if command in commands:
-                commands_functions[command]()
-            elif command == "quit": 
+
+            if command == "quit": 
                 break
+            elif command in commands:
+                commands_functions[command]()
             else:
                 print("comando inválido")
 
@@ -70,8 +71,3 @@ class Game:
     
 game = Game()
 game.start()
-
-globals_dict = globals().copy()
-
-for key, item in globals_dict.items():
-    print(f"{key} : {item}")
