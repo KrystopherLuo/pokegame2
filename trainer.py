@@ -211,7 +211,7 @@ class Player(Trainer):
 
 
     def start_adventure(self):
-        print("Bem vindo a pokegáme 2. Escolha um pokémon inicial para iniciar sua aventura.")
+        print("Bem vindo a pokégame 2. Escolha um pokémon inicial para iniciar sua aventura.")
         starter = self.get_valid_input(["bulbasaur", "squirtle", "charmander"])
         self.receive_pokemon(create_pk(starter, 5))
 
