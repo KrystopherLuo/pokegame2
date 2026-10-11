@@ -7,11 +7,32 @@ Neste jogo, você começa escolhendo um starter da primeira geração e precisa 
 
 ![](./images/demonstracao.png)
 
-dependências: python 3.13.7 que pode ser baixado do site python.org
+# dependências:
+python 3.13.7 que pode ser baixado do site python.org
 
-como executar o programa: Clique duas vezes no programa "pokegame2.py" e use o terminal para interagir.
+# como executar e utilizar o programa
+ Clique duas vezes no programa "pokegame2.py" e use o terminal para interagir.
+ Primeiro você deve indicar qual pokémon pretende iniciar sua aventura. No terminal, aparecerá os nomes de cada pokémon possível para serem escolhidos. 
+ Você deve escolher um dos comandos válidos inidicados e o digitar no terminal.
 
-Estrutura do projeto:
+ 
+![](./images/demonstracao.png)
+Neste exemplo, foi escolhido como inicial o pokémon charmander e ele foi adicionado ao seu time.
+Para utilizá-lo, basta escolher uma das duas ações "wild_battle" para enfrentar um selvagem aleatório
+ou "trainer_battle" para abrir uma seleção onde você deve escrever o nome do treinador que deseja enfrentar.
+![](./images/demo1.png)
+no exemplo acima, foi escolhido para ser enfrentado o treinador red.
+após iniciar a batalha, será oferecido as opções para atacar, correr, capturar e fugir.
+![](./images/demo2.png)
+se for escolhido o atacar, será oferecido os movimentos disponíveis para seu pokémon. Se a vida de você ou de seu oponente chegar a 0, a batalha acaba.
+Se não, será oferecida outra vez a opção de atacar, correr, capturar ou fugir.
+
+Se você estiver em uma batalha selvagem e escolher capturar, o jogo gerarará um número aleatório que tem 50% de chance de que você capture o monstrinho e ele se junte a sua equipe.
+
+Se você escolher correr, há uma chance de obter sucesso e encerrar a batalha.
+
+
+# Estrutura do projeto:
 
 battle.py: Cuida de tudo referente a batalhas
 moves.py: Guarda uma lista com todos os movimentos e posteriormente deve guardar também as funcionalidades especiais destes movimentos.
